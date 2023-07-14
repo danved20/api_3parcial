@@ -1,7 +1,22 @@
-create table empleado
-(
-    ci numeric(8)primary key,
-    nombre varcahr(30),
-    fecha_nac date,
-    procedencia varcahr(30)
-)
+create table proveedor(
+ci BIGINT primary key,
+nombre varchar(30),
+edad bigint ,
+ciudad varchar(30)
+);
+
+CREATE TABLE clientes(
+    cod_cli BIGINT PRIMARY KEY,
+    nombre VARCHAR(30),
+    apellido VARCHAR(30),
+    sexo VARCHAR(30)
+);
+
+CREATE TABLE productos (
+    cod_p BIGINT PRIMARY KEY,
+    descripcion VARCHAR(30),
+    precio BIGINT,
+    cod_proveedor bigint,cod_cliente BIGINT,
+    FOREIGN KEY (cod_proveedor) REFERENCES proveedor (ci),
+    FOREIGN KEY (cod_cliente) REFERENCES clientes (cod_cli)
+);
