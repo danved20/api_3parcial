@@ -3,3 +3,10 @@ psycopg2
 flask_cors
 python-decouple
 python-dotenv
+flask-restful
+distlib
+Flask-Cors  
+Flask-RESTful
+virtualenv 
+uvicorn   
+pydantic 
