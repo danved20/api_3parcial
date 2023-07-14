@@ -1,4 +1,5 @@
 flask
+Flask
 psycopg2
 flask_cors
 python-decouple
