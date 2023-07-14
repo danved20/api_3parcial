@@ -139,3 +139,31 @@ class ProveedorModel:
             return jsonify({'mensaje': "Proveedor eliminado", 'exito': True})
         except Exception as ex:
             return jsonify({'mensaje': "Error al eliminar proveedor", 'exito': False})
+        
+
+    @classmethod
+    def consulta(cls):
+        try:
+            conn = db_connection()
+            cur = conn.cursor()
+            cur.execute("""SELECT p.descripcion, pr.nombre AS proveedor, c.nombre AS cliente
+                        FROM productos p
+                        JOIN proveedor pr ON p.cod_proveedor = pr.ci
+                        JOIN clientes c ON p.cod_cliente = c.cod_cli;
+                        """)
+            datos = cur.fetchall()
+            conn.close()
+
+            resultados = []
+
+            for fila in datos:
+                resultado = {
+                    'descripcion': fila[0],
+                    'proveedor': fila[1],
+                    'cliente': fila[2]
+                }
+                resultados.append(resultado)
+
+            return jsonify({'resultados': resultados, 'mensaje': "Consulta exitosa."})
+        except Exception as ex:
+            return jsonify({'mensaje': "Error", 'exito': False})

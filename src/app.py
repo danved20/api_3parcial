@@ -40,6 +40,11 @@ def modificar_proveedor(ci):
 @app.route('/proveedores/<ci>', methods=['DELETE'])
 def eliminar_proveedor(ci):
     return ProveedorModel.delete_proveedor(ci)
+
+@app.route('/consulta', methods=['GET'])
+def consulta():
+    return ProveedorModel.consulta()
+
 """ @app.route('/proveedores/<ci>', methods=['PUT'])
 def modificar_proveedor(ci):
     proveedor = ProveedorModel.modificar_proveedor(ci)
